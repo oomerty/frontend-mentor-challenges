@@ -28,26 +28,35 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--vl-grayish-blue);
   font-weight: var(--weight500);
+  overflow: hidden;
+}
 
+main {
   width: 100vw;
   height: 100vh;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .notifications-container {
   background-color: var(--white);
-  width: 730px;
-  padding: 1.6rem;
+  width: 720px;
+  padding: 3.2rem;
+  padding-bottom: 1.6rem;
 
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
 
   border-radius: 2rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
 /* ----- NOTIFICATION HEAD ----- */
@@ -56,21 +65,34 @@ body {
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  padding: 1.6rem;
+  padding: 1.6rem 0;
+  margin-bottom: 0.8rem;
 }
 
 .notification-title {
   color: var(--very-dark-blue);
   font-size: 2rem;
   font-weight: var(--weight800);
+  margin-bottom: 1.6rem;
 }
 
 .unread-count {
   color: var(--white);
   background-color: var(--primary-blue);
+  font-weight: var(--weight500);
   padding: 0.2rem 1.2rem;
-  border-radius: 0.8rem;
+  border-radius: 0.4rem;
   font-size: 1.6rem;
+  margin-left: 0.4rem;
+}
+
+.btn--read-all {
+  text-decoration: none;
+  color: var(--dark-grayish-blue);
+}
+
+.btn--read-all:hover {
+  color: var(--primary-blue);
 }
 
 /* ----- NOTIFICATION CARD ----- */
@@ -85,10 +107,14 @@ body {
   border-radius: 1rem;
 }
 
+.notification-card:last-child {
+  padding-bottom: 0;
+}
+
 /* PROFILE PICTURE */
 .notification-container-pfp img {
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 /* INFO */
@@ -103,22 +129,41 @@ body {
   color: var(--grayish-blue);
 }
 
+..info-unread {
+  position: relative;
+}
+
+.info-unread::after {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: var(--primary-red);
+  border-radius: 50%;
+  margin-left: 0.6rem;
+}
+
 .user-tag {
   font-weight: var(--weight800);
   color: var(--very-dark-blue);
-  padding-right: 0.4rem;
+  padding-right: 0.2rem;
+  cursor:pointer;
+}
+
+.user-tag:hover {
+  color: var(--primary-blue);
 }
 
 .event-tag {
   font-weight: var(--weight800);
   color: var(--dark-grayish-blue);
-  padding-left: 0.4rem;
+  padding-left: 0.2rem;
+  cursor:pointer;
 }
 
-.unread-indicator {
-  width: 0.8rem;
-  height: 0.8rem;
-  background-color: var(--primary-red);
+.event-tag:hover {
+  color: var(--primary-blue);
 }
 
 .info-date {
@@ -129,7 +174,13 @@ body {
   border: 1px solid var(--light-grayish-blue-2);
   border-radius: 0.8rem;
   padding: 1.6rem;
-  color: var(--dark-grayish-blue);
+  color: var(--grayish-blue);
+  margin-top: 0.8rem;
+  cursor: pointer;
+}
+
+.message-preview:hover {
+  background-color: var(--light-grayish-blue-2);
 }
 
 /* PREVIEW */
@@ -137,7 +188,9 @@ body {
 .notification-container-preview img {
   width: 4.8rem;
   height: 4.8rem;
+  cursor: pointer;
 }
+
 
 .attribution {
   font-size: 11px; 
@@ -157,4 +210,39 @@ body {
 
 .unread {
   background-color: var(--vl-grayish-blue);
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 300ms;
+}
+
+/* ----- MEDIA QUERIES ----- */
+@media (max-width: 375px) {
+  body {
+    overflow: auto;
+  }
+
+  main {
+    height: max-content;
+  }
+
+  .notifications-container {
+    width: 100%;
+    height: max-content;
+    padding: 1.6rem;
+    padding-top: 2.4rem;
+    padding-bottom: 4.5rem;
+  
+    display: flex;
+    flex-direction: column;
+  
+    border-radius: 2rem;
+  }
+
+  .notification-head {
+    margin-bottom: 0;
+  }
+
+  .attribution {
+    display: none;
+  }
 }
